@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.log
+.env
+.env.*
+!.env.example
+premium-mobile-final.png
+desktop-final-1920.png
