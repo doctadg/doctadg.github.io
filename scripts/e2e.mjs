@@ -28,7 +28,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 try {
   await page.goto(process.env.TEST_URL || 'http://127.0.0.1:4178/?skip=1', { waitUntil: 'domcontentloaded' });
   await page.waitForSelector('h1');
-  check(await page.$eval('h1', (el) => el.textContent.includes('MAKE')), 'Home failed');
+  check(await page.$eval('h1', (el) => el.textContent.includes('EVERY SIGNAL')), 'Cinematic home failed');
 
   await page.click('a[href="/launch"]');
   await page.waitForSelector('#launchForm');
@@ -60,6 +60,7 @@ try {
   await page.click('a[href="/leaderboard"]');
   await page.waitForSelector('#search');
   await page.click('[data-sort="new"]');
+  await page.waitForSelector('[data-sort="new"].active', { timeout: 5000 });
   check(await page.$eval('[data-sort="new"]', (el) => el.classList.contains('active')), 'Leaderboard sort failed');
   await page.type('#search', 'VOID');
   check(await page.$$eval('#leaderList .leader-row', (els) => els.length) === 1, 'Leaderboard search failed');
