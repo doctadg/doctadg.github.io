@@ -32,6 +32,8 @@ try {
 
   await page.click('a[href="/launch"]');
   await page.waitForSelector('#launchForm');
+  await page.$eval('[data-mode="ai"]', (el) => el.scrollIntoView({ block: 'center' }));
+  await sleep(400);
   await page.click('[data-mode="ai"]');
   await page.type('#aiPrompt', 'a sentient solana puddle');
   await page.click('[data-action="generate"]');
@@ -59,6 +61,8 @@ try {
 
   await page.click('a[href="/leaderboard"]');
   await page.waitForSelector('#search');
+  await page.$eval('[data-sort="new"]', (el) => el.scrollIntoView({ block: 'center' }));
+  await sleep(300);
   await page.click('[data-sort="new"]');
   await page.waitForSelector('[data-sort="new"].active', { timeout: 5000 });
   check(await page.$eval('[data-sort="new"]', (el) => el.classList.contains('active')), 'Leaderboard sort failed');
@@ -67,6 +71,8 @@ try {
 
   await page.click('a[href="/rewards"]');
   await page.waitForSelector('[data-action="tap"]');
+  await page.$eval('[data-action="tap"]', (el) => el.scrollIntoView({ block: 'center' }));
+  await sleep(400);
   const before = +(await page.$eval('[data-action="tap"]', (el) => el.textContent));
   await page.click('[data-action="tap"]');
   check(+(await page.$eval('[data-action="tap"]', (el) => el.textContent)) === before + 1, 'Reward tap failed');
