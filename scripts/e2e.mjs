@@ -28,7 +28,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 try {
   await page.goto(process.env.TEST_URL || 'http://127.0.0.1:4178/?skip=1', { waitUntil: 'domcontentloaded' });
   await page.waitForSelector('h1');
-  check(await page.$eval('h1', (el) => el.textContent.includes('EVERY SIGNAL')), 'Cinematic home failed');
+  check(await page.$eval('h1', (el) => el.textContent.includes('GOT AN IDEA')), 'Cinematic home failed');
 
   await page.click('a[href="/launch"]');
   await page.waitForSelector('#launchForm');
